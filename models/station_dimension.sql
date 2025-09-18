@@ -4,8 +4,7 @@ with BIKE as(
         start_station_name, 
         start_lat, 
         start_Lng
-    from {{ source('demo', 'bike') }}
-    where RIDE_ID != 'ride_id'
+    from {{ ref('stg_bike') }}
+    where RIDE_ID not in('ride_id', 'bikeid')
 )
-
 select * from BIKE
